@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
+    <h1 class="display-4 fw-bold mb-4 text-center">Welcome to Real Estate Portal</h1>
+    <p class="lead text-center mb-5">Find your dream home or list your property for sale or rent.</p>
+    <div class="d-flex gap-4">
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg px-5 shadow">Login</a>
+        <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg px-5 shadow">Register</a>
+    </div>
+</div>
+{% endblock %}

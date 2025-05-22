@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Property Details{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow p-4">
+        <div class="row g-4 align-items-center">
+          <!-- Image on the left -->
+          <div class="col-md-5">
+            {% if prop.image %}
+              <img src="{{ url_for('static', filename='uploads/' ~ prop.image) }}"
+                   alt="Property Image"
+                   class="img-fluid rounded"
+                   style="width: 100%; max-height: 400px; object-fit: cover;">
+            {% else %}
+              <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded"
+                   style="height: 300px;">No Image</div>
+            {% endif %}
+          </div>
+          <!-- Details on the right -->
+          <div class="col-md-7">
+            <h3 class="mb-3">{{ prop.type }} in {{ prop.location }}</h3>
+            <ul class="list-group list-group-flush mb-3">
+              <li class="list-group-item"><strong>Size:</strong> {{ prop.size }} sq ft</li>
+              <li class="list-group-item"><strong>Price:</strong> ₹{{ prop.price }}</li>
+              <li class="list-group-item"><strong>Amenities:</strong> {{ prop.amenities or 'None' }}</li>
+              <li class="list-group-item"><strong>Status:</strong> {{ prop.status }}</li>
+            </ul>
+            <div class="d-flex gap-2">
+              {% if prop.status == 'For Sale' %}
+                <a href="{{ url_for('confirm_buy', prop_id=prop.Prop_id) }}" class="btn btn-success">Buy</a>
+              {% elif prop.status == 'For Rent' %}
+                <a href="{{ url_for('confirm_rent', prop_id=prop.Prop_id) }}" class="btn btn-primary">Rent</a>
+              {% else %}
+                <span class="badge bg-secondary py-2">Not Available</span>
+              {% endif %}
+              <!-- Chat with Seller Button -->
+              <a href="{{ url_for('chat', other_user_id=prop.User_id, property_id=prop.Prop_id) }}" class="btn btn-warning">Chat with Seller</a>
+              <a href="{% if session['user_type'] == 'seller' %}{{ url_for('seller_dashboard') }}{% else %}{{ url_for('buyer_dashboard') }}{% endif %}" class="btn btn-outline-secondary">Back to Listings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

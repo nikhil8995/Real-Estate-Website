@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Confirm Purchase{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
+        <h2 class="mb-4 text-center fw-bold">Confirm Purchase</h2>
+        <div class="mb-3">
+            <strong>Property:</strong> {{ prop.type }} in {{ prop.location }}<br>
+            <strong>Price:</strong> ₹{{ prop.price }}<br>
+            <strong>Status:</strong> {{ prop.status }}
+        </div>
+        <form method="POST">
+            <button type="submit" class="btn btn-success w-100 fw-bold mb-2">Confirm & Pay</button>
+            <a href="{{ url_for('buyer_dashboard') }}" class="btn btn-outline-secondary w-100">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

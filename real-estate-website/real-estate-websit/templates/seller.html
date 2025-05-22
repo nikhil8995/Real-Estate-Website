@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Seller Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Your Properties</h2>
+    <div>
+      <span class="fw-bold text-primary me-3">Welcome, {{ user_name }}!</span>
+      <a href="{{ url_for('all_chats') }}" class="btn btn-success">
+        <i class="bi bi-chat-dots"></i> All Chats
+      </a>
+      <a href="{{ url_for('add_property') }}" class="btn btn-primary fw-bold ms-2">
+        <i class="bi bi-plus-circle me-1"></i> Add Property
+      </a>
+    </div>
+  </div>
+
+  {% if properties %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+      {% for prop in properties %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          {% if prop.image %}
+            <img src="{{ url_for('static', filename='uploads/' ~ prop.image) }}" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+          {% else %}
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">No Image</div>
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ prop.type }} at {{ prop.location }}</h5>
+            <p class="card-text mb-2">
+              <strong>Status:</strong> {{ prop.status }}<br>
+              <strong>Price:</strong> ₹{{ prop.price }}<br>
+              <strong>Size:</strong> {{ prop.size }} sq ft<br>
+              <strong>Amenities:</strong> {{ prop.amenities or 'None' }}
+            </p>
+            <div class="d-flex gap-2">
+              <a href="{{ url_for('property_detail', prop_id=prop.Prop_id) }}" class="btn btn-outline-secondary btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">You have not added any properties yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

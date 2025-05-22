@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Add Property{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="fw-bold mb-4">Add Property</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="type" class="form-label">Type</label>
+      <select class="form-select" id="type" name="type" required>
+        <option value="" disabled selected>Select type</option>
+        <option value="Apartment">Apartment</option>
+        <option value="House">House</option>
+        <option value="Condo">Condo</option>
+        <option value="Townhouse">Townhouse</option>
+        <option value="Villa">Villa</option>
+        <option value="Studio">Studio</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="size" class="form-label">Size (sq ft)</label>
+      <input type="number" class="form-control" id="size" name="size" required>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" name="price" required>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="location" name="location" required>
+    </div>
+    <div class="mb-3">
+      <label for="amenities" class="form-label">Amenities</label>
+      <input type="text" class="form-control" id="amenities" name="amenities">
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select class="form-select" id="status" name="status" required>
+        <option value="For Sale">For Sale</option>
+        <option value="For Rent">For Rent</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Property Image</label>
+      <input type="file" class="form-control" id="image" name="image" accept="image/*">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Property</button>
+  </form>
+</div>
+{% endblock %}

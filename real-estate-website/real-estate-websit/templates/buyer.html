@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Buyer Dashboard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Available Properties</h2>
+    <div>
+      <span class="fw-bold text-primary me-3">Welcome, {{ user_name }}!</span>
+      <a href="{{ url_for('all_chats') }}" class="btn btn-success">
+        <i class="bi bi-chat-dots"></i> All Chats
+      </a>
+    </div>
+  </div>
+
+  <!-- Filter Dropdown -->
+  <form method="get" class="mb-4 d-flex align-items-center gap-2">
+    <label for="filter" class="form-label mb-0 fw-bold">Show:</label>
+    <select name="filter" id="filter" class="form-select w-auto" onchange="this.form.submit()">
+      <option value="For Sale" {% if filter_status == 'For Sale' %}selected{% endif %}>For Sale</option>
+      <option value="For Rent" {% if filter_status == 'For Rent' %}selected{% endif %}>For Rent</option>
+      <option value="All" {% if filter_status == 'All' %}selected{% endif %}>All</option>
+    </select>
+  </form>
+
+  {% if properties %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for prop in properties %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          {% if prop.image %}
+            <img src="{{ url_for('static', filename='uploads/' ~ prop.image) }}" class="card-img-top" alt="Property Image" style="height: 200px; object-fit: cover;">
+          {% else %}
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">No Image</div>
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ prop.type }} in {{ prop.location }}</h5>
+            <p class="card-text mb-2">
+              <strong>Size:</strong> {{ prop.size }} sq ft<br>
+              <strong>Price:</strong> ₹{{ prop.price }}<br>
+              <strong>Amenities:</strong> {{ prop.amenities or 'None' }}<br>
+              <strong>Status:</strong> {{ prop.status }}
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              {% if prop.status == 'For Sale' %}
+                <a href="{{ url_for('confirm_buy', prop_id=prop.Prop_id) }}" class="btn btn-success btn-sm">Buy</a>
+              {% elif prop.status == 'For Rent' %}
+                <a href="{{ url_for('confirm_rent', prop_id=prop.Prop_id) }}" class="btn btn-primary btn-sm">Rent</a>
+              {% else %}
+                <span class="badge bg-secondary py-2">Not Available</span>
+              {% endif %}
+              <a href="{{ url_for('chat', other_user_id=prop.User_id, property_id=prop.Prop_id) }}" class="btn btn-warning btn-sm">Chat with Seller</a>
+              <a href="{{ url_for('property_detail', prop_id=prop.Prop_id) }}" class="btn btn-outline-secondary btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info mt-4">No properties found for the selected filter.</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,194 @@
+/* style.css */
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bs-body-bg, #f4f4f4);
+  color: var(--bs-body-color, #333);
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+a {
+  color: #0d6efd;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #0a58ca;
+  text-decoration: underline;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #444;
+  padding: 0.5em 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+nav li {
+  display: inline;
+  margin: 0 1em;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px;
+  margin-bottom: 80px; /* Ensure content doesn't hide behind fixed footer */
+}
+
+/* Card Styles */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+.card-img-top {
+  border-radius: 0.5rem 0.5rem 0 0;
+  object-fit: cover;
+}
+
+/* Responsive Image in Property Details */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Footer Styles */
+footer.footer {
+  width: 100%;
+  background: var(--bs-body-bg, #222); /* Uses Bootstrap's theme variable */
+  color: var(--bs-body-color, #f8f9fa);
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #444;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+  z-index: 1030;
+  transition: background 0.3s, color 0.3s;
+  position: fixed;
+  bottom: 0;
+}
+
+/* Make sure text is white in dark mode */
+[data-bs-theme="dark"] footer.footer {
+  background: #222 !important;
+  color: #f8f9fa !important;
+  border-top: 1px solid #444;
+}
+[data-bs-theme="light"] footer.footer {
+  background: #f8f9fa !important;
+  color: #222 !important;
+  border-top: 1px solid #ddd;
+}
+
+/* Responsive Footer Font */
+@media (max-width: 600px) {
+  footer.footer {
+    font-size: 0.85rem;
+    padding: 0.7rem 0;
+  }
+}
+
+/* Flash Messages */
+.alert {
+  margin-bottom: 1rem;
+}
+
+/* Chat Styles */
+.chat-message {
+  margin-bottom: 0.5rem;
+}
+.chat-message .badge {
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+}
+.chat-message.text-end .badge {
+  background: #0d6efd;
+  color: #fff;
+}
+.chat-message .badge.bg-secondary {
+  background: #6c757d;
+}
+
+/* Utility Classes */
+.text-muted {
+  color: #6c757d !important;
+}
+.fw-bold {
+  font-weight: bold !important;
+}
+.gap-2 {
+  gap: 0.5rem !important;
+}
+
+/* Custom Scrollbar for Chat */
+.card-body {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f4f4f4;
+}
+.card-body::-webkit-scrollbar {
+  width: 8px;
+}
+.card-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.card-body::-webkit-scrollbar-track {
+  background: #f4f4f4;
+}
+
+/* Miscellaneous */
+.bg-secondary {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+.bg-primary {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+/* 🆕 Translucent Card Body */
+.translucent-body {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0 0 0.5rem 0.5rem;
+}

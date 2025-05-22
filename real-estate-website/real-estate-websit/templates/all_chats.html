@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}All Chats{% endblock %}
+{% block content %}
+<style>
+  .chat-list { max-height: 80vh; overflow-y: auto; }
+  .chat-list-item { cursor: pointer; transition: background 0.2s; }
+  .chat-list-item:hover { background: #f0f0f0; }
+  .chat-avatar { width: 48px; height: 48px; border-radius: 50%; background: #e0e0e0; display: inline-block; }
+  .chat-main { border-left: 1px solid #ddd; min-height: 60vh; }
+  .chat-header { background: #f8f9fa; padding: 1rem; border-bottom: 1px solid #ddd; }
+  .chat-body { padding: 1rem; height: 50vh; overflow-y: auto; background: #f5f5f5; }
+  .chat-footer { padding: 1rem; border-top: 1px solid #ddd; background: #fff; }
+</style>
+<div class="container py-4">
+  <h2 class="fw-bold mb-4">All Chats</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="list-group chat-list">
+        {% for thread in chat_threads %}
+        <a href="{{ url_for('chat', other_user_id=thread.other_user_id, property_id=thread.property_id) }}"
+           class="list-group-item list-group-item-action chat-list-item d-flex align-items-center">
+          <div class="chat-avatar me-3">
+            <span class="fw-bold fs-4 text-secondary text-center d-block" style="line-height:48px;">
+              {{ thread.other_first_name[0] if thread.other_first_name else '?' }}
+            </span>
+          </div>
+          <div class="flex-grow-1">
+            <div class="fw-bold">{{ thread.other_first_name }} {{ thread.other_last_name }}</div>
+            <div class="small text-muted">
+              {{ thread.property_type }} at {{ thread.property_location }}
+            </div>
+            <div class="small text-dark">
+              {{ thread.last_message or 'No messages yet.' }}
+            </div>
+          </div>
+        </a>
+        {% else %}
+        <div class="alert alert-info">No chat threads yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8 d-none d-md-block">
+      <div class="chat-main d-flex flex-column justify-content-center align-items-center h-100">
+        <div class="text-muted">Select a chat to start messaging</div>
+        <i class="bi bi-chat-dots fs-1 text-secondary"></i>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
