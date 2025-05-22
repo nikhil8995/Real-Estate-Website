@@ -27,3 +27,95 @@ real-estate-app/
 ├── real_estate_schema.sql             # Database schema
 
 ├──requirements.txt
+
+🧑‍💻 Tech Stack
+
+Backend: Flask (Python), Flask-SocketIO
+
+Database: MySQL
+
+Frontend: HTML, CSS (Jinja templates)
+
+Libraries: mysql-connector-python, werkzeug, flask-socketio
+
+🛠 Database Schema
+
+Run the following SQL commands to create the required schema.
+
+🧪 Setup Instructions
+
+1. Clone the Repository
+
+git clone https://github.com/your-username/real-estate-app.git
+
+cd real-estate-app
+
+2. Install Dependencies
+
+pip install -r requirements.txt
+
+3. Configure MySQL
+
+Ensure your MySQL server is running. Update credentials in app.py:
+
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="real_estate",
+    port=3306
+)
+
+Then run the schema script manually via MySQL client or a GUI like phpMyAdmin.
+
+4. Run the Application
+
+python app.py
+
+Then visit http://localhost:5000 in your browser.
+
+💡 How It Works
+
+🔑 Authentication
+
+Users can register as a buyer or seller.
+
+Secure password hashing using werkzeug.security.
+
+🏠 Buyer Dashboard
+
+View all available properties (For Sale, For Rent)
+
+Confirm purchase or rental with transaction record insertion
+
+🧾 Seller Dashboard
+
+Add new property listings with details
+
+View properties uploaded by the seller
+
+💬 Real-Time Chat
+
+Socket.IO powered messaging between buyers and sellers
+
+Property-specific chat rooms with timestamped messages
+
+📌 TODO / Improvements
+
+Add admin panel for moderation
+
+Integrate Google Maps for property location
+
+Add pagination and search for listings
+
+Include user reviews and ratings for sellers
+
+🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+🛡 Security Notice
+
+Use environment variables or a .env file to secure secrets like secret_key and database credentials before deploying.
+
+Change default credentials and key before production.
