@@ -46,7 +46,7 @@ Run the following SQL commands to create the required schema.
 
 1. Clone the Repository
 
-git clone https://github.com/your-username/real-estate-app.git
+git clone https://github.com/nikhil8995/real-estate-app.git
 
 cd real-estate-app
 
